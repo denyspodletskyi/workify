@@ -8,6 +8,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
@@ -15,6 +16,7 @@
 
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <main id="auth-screen">
       <section class="auth-card">
@@ -31,6 +33,7 @@
           >
             Вхід
           </button>
+
           <button
             type="button"
             class="tab-btn"
@@ -63,6 +66,7 @@
               required
             />
           </div>
+
           <div class="form-group">
             <label for="login-password">Пароль</label>
             <input
@@ -73,6 +77,7 @@
               minlength="6"
             />
           </div>
+
           <button type="submit" class="btn-primary">Увійти</button>
         </form>
 
@@ -94,6 +99,7 @@
               minlength="2"
             />
           </div>
+
           <div class="form-group">
             <label for="reg-email">Email</label>
             <input
@@ -103,6 +109,7 @@
               required
             />
           </div>
+
           <div class="form-group">
             <label for="reg-phone">Телефон</label>
             <input
@@ -114,6 +121,7 @@
               title="Формат: +380 та 9 цифр"
             />
           </div>
+
           <div class="form-group">
             <label for="reg-role">Роль</label>
             <select id="reg-role" required>
@@ -121,6 +129,7 @@
               <option value="admin">Менеджер</option>
             </select>
           </div>
+
           <div class="form-group">
             <label for="reg-password">Пароль</label>
             <input
@@ -131,6 +140,7 @@
               minlength="6"
             />
           </div>
+
           <button type="submit" class="btn-primary">Зареєструватись</button>
         </form>
       </section>
@@ -145,53 +155,65 @@
 
         <nav class="nav-section" aria-label="Головне меню">
           <div class="nav-label" id="nav-label">Навігація</div>
+
           <button
             type="button"
             class="nav-item active"
             onclick="showPage('dashboard')"
             aria-describedby="nav-label"
           >
-            <span class="icon" aria-hidden="true">📊</span> Дашборд
+            <span class="icon" aria-hidden="true">📊</span>
+            Дашборд
           </button>
+
           <button type="button" class="nav-item" onclick="showPage('schedule')">
-            <span class="icon" aria-hidden="true">📅</span> Графік змін
+            <span class="icon" aria-hidden="true">📅</span>
+            Графік змін
           </button>
+
           <button
             type="button"
             class="nav-item"
             onclick="showPage('my-shifts')"
           >
-            <span class="icon" aria-hidden="true">👤</span> Мої зміни
+            <span class="icon" aria-hidden="true">👤</span>
+            Мої зміни
           </button>
+
           <button
             type="button"
             class="nav-item"
             onclick="showPage('conflicts')"
           >
-            <span class="icon" aria-hidden="true">⚠️</span> Перевірка конфліктів
+            <span class="icon" aria-hidden="true">⚠️</span>
+            Перевірка конфліктів
           </button>
+
           <button type="button" class="nav-item" onclick="showPage('requests')">
-            <span class="icon" aria-hidden="true">📝</span> Заяви
+            <span class="icon" aria-hidden="true">📝</span>
+            Заяви
           </button>
+
           <button
             type="button"
             class="nav-item"
             onclick="showPage('add-shift')"
           >
-            <span class="icon" aria-hidden="true">➕</span> Додати зміну
+            <span class="icon" aria-hidden="true">➕</span>
+            Додати зміну
           </button>
         </nav>
 
         <footer class="sidebar-footer">
           <div class="user-info">
-            <div class="user-avatar" id="sidebar-avatar" aria-hidden="true">
-              А
-            </div>
+            <div class="user-avatar" id="sidebar-avatar">А</div>
+
             <div>
               <div class="user-name" id="sidebar-name">Анна</div>
               <div class="user-role" id="sidebar-role">Працівник</div>
             </div>
           </div>
+
           <button type="button" class="btn-logout" onclick="handleLogout()">
             Вийти
           </button>
@@ -210,10 +232,12 @@
               <h3 class="stat-label">Всього змін</h3>
               <div class="stat-value" id="stat-total">4</div>
             </article>
+
             <article class="stat-card green">
               <h3 class="stat-label">Активних заяв</h3>
               <div class="stat-value" id="stat-requests">0</div>
             </article>
+
             <article class="stat-card warn">
               <h3 class="stat-label">Конфліктів</h3>
               <div class="stat-value" id="stat-conflicts">0</div>
@@ -227,227 +251,6 @@
               id="dashboard-shifts"
               aria-live="polite"
             ></div>
-          </article>
-        </section>
-
-        <section class="page" id="page-schedule">
-          <header class="page-header">
-            <h2>Графік змін</h2>
-            <p>Тижневий розклад — Лютий 2026</p>
-          </header>
-          <article class="card">
-            <h3 class="card-title">📅 Тижневий календар</h3>
-            <div class="schedule-grid" id="schedule-grid"></div>
-          </article>
-        </section>
-
-        <section class="page" id="page-my-shifts">
-          <header class="page-header">
-            <h2>Мої зміни</h2>
-            <p id="my-shifts-subtitle">Ваш персональний графік</p>
-          </header>
-          <div class="shifts-list" id="my-shifts-list"></div>
-        </section>
-
-        <section class="page" id="page-conflicts">
-          <header class="page-header">
-            <h2>Перевірка конфліктів</h2>
-            <p>Виявлення накладань у графіку змін</p>
-          </header>
-
-          <article class="conflict-panel">
-            <h3 class="card-title">🔍 Перевірити нову зміну</h3>
-            <form
-              onsubmit="
-                event.preventDefault();
-                checkConflict();
-              "
-            >
-              <div class="form-grid">
-                <div class="form-group">
-                  <label for="check-date">Дата зміни</label>
-                  <input type="date" id="check-date" required />
-                </div>
-                <div class="form-group">
-                  <label for="check-start">Час початку</label>
-                  <input type="time" id="check-start" required />
-                </div>
-                <div class="form-group">
-                  <label for="check-end">Час закінчення</label>
-                  <input type="time" id="check-end" required />
-                </div>
-                <div class="form-group">
-                  <label for="check-employee">Працівник</label>
-                  <select id="check-employee" required>
-                    <option value="">Оберіть...</option>
-                  </select>
-                </div>
-              </div>
-              <button type="submit" class="btn-submit">Перевірити</button>
-            </form>
-            <div
-              class="conflict-result"
-              id="conflict-result"
-              aria-live="assertive"
-            ></div>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">⚠️ Виявлені конфлікти в системі</h3>
-            <div id="all-conflicts-list"></div>
-          </article>
-        </section>
-
-        <section class="page" id="page-requests">
-          <header class="page-header">
-            <h2>Заяви</h2>
-            <p>Подання та відстеження заяв на відпустку</p>
-          </header>
-
-          <article class="card" style="margin-bottom: 24px">
-            <h3 class="card-title">✍️ Нова заява</h3>
-
-            <form
-              onsubmit="
-                event.preventDefault();
-                submitRequest();
-              "
-            >
-              <fieldset
-                class="request-type-grid"
-                style="border: none; padding: 0; margin: 0"
-              >
-                <legend class="sr-only" style="display: none">Тип заяви</legend>
-                <div>
-                  <input
-                    type="radio"
-                    name="req-type"
-                    id="type-vacation"
-                    class="type-option"
-                    value="vacation"
-                    checked
-                  />
-                  <label for="type-vacation" class="type-label">
-                    <span class="type-icon" aria-hidden="true">🏖️</span>
-                    <span class="type-name">Відпустка</span>
-                    <span class="type-desc">Оплачувана</span>
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    name="req-type"
-                    id="type-sick"
-                    class="type-option"
-                    value="sick"
-                  />
-                  <label for="type-sick" class="type-label">
-                    <span class="type-icon" aria-hidden="true">🤒</span>
-                    <span class="type-name">Лікарняний</span>
-                    <span class="type-desc">Медична довідка</span>
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    name="req-type"
-                    id="type-dayoff"
-                    class="type-option"
-                    value="dayoff"
-                  />
-                  <label for="type-dayoff" class="type-label">
-                    <span class="type-icon" aria-hidden="true">☀️</span>
-                    <span class="type-name">Вихідний</span>
-                    <span class="type-desc">За власний рахунок</span>
-                  </label>
-                </div>
-              </fieldset>
-
-              <div class="form-grid" style="margin-top: 20px">
-                <div class="form-group">
-                  <label for="req-date-from">Дата початку</label>
-                  <input type="date" id="req-date-from" required />
-                </div>
-                <div class="form-group">
-                  <label for="req-date-to">Дата закінчення</label>
-                  <input type="date" id="req-date-to" required />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="req-reason">Причина (необов'язково)</label>
-                <input
-                  type="text"
-                  id="req-reason"
-                  placeholder="Вкажіть причину..."
-                  maxlength="100"
-                />
-              </div>
-              <button type="submit" class="btn-submit">Подати заяву</button>
-            </form>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title" id="requests-list-title">📋 Усі заяви</h3>
-            <div class="requests-list" id="requests-list"></div>
-          </article>
-        </section>
-
-        <section class="page" id="page-add-shift">
-          <header class="page-header">
-            <h2>Додати зміну</h2>
-            <p id="add-shift-subtitle">Заявка на нову робочу зміну</p>
-          </header>
-
-          <article class="card" style="margin-bottom: 24px">
-            <h3 class="card-title" id="add-shift-form-title">📋 Нова зміна</h3>
-
-            <form
-              onsubmit="
-                event.preventDefault();
-                submitAddShift();
-              "
-            >
-              <div class="form-grid">
-                <div
-                  class="form-group"
-                  id="add-shift-employee-group"
-                  style="display: none"
-                >
-                  <label for="add-shift-employee">Працівник</label>
-                  <select id="add-shift-employee">
-                    <option value="">Оберіть...</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="add-shift-date">Дата зміни</label>
-                  <input type="date" id="add-shift-date" required />
-                </div>
-                <div class="form-group">
-                  <label for="add-shift-start">Час початку</label>
-                  <input type="time" id="add-shift-start" required />
-                </div>
-                <div class="form-group">
-                  <label for="add-shift-end">Час закінчення</label>
-                  <input type="time" id="add-shift-end" required />
-                </div>
-              </div>
-              <div
-                id="add-shift-conflict-warn"
-                class="conflict-result error"
-                style="display: none; margin-top: 0; margin-bottom: 16px"
-                aria-live="polite"
-              ></div>
-              <button type="submit" class="btn-submit">
-                Подати заявку на зміну
-              </button>
-            </form>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title" id="shift-requests-title">
-              ⏳ Заявки на зміни
-            </h3>
-            <div class="requests-list" id="shift-requests-list"></div>
           </article>
         </section>
       </main>
