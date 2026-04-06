@@ -3,260 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="WorkiFy - Система управління змінами" />
-    <title>WorkiFy — Управління змінами</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-
+    <title>WorkiFy</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <main id="auth-screen">
       <section class="auth-card">
-        <header>
-          <h1 class="auth-logo">Work<span>i</span>Fy</h1>
-          <p class="auth-subtitle">Система управління змінами</p>
-        </header>
+        <h1 class="auth-logo">Work<span>i</span>Fy</h1>
 
-        <nav class="tab-row" aria-label="Вкладки авторизації">
-          <button
-            type="button"
-            class="tab-btn active"
-            onclick="switchAuthTab('login')"
-          >
-            Вхід
-          </button>
-
-          <button
-            type="button"
-            class="tab-btn"
-            onclick="switchAuthTab('register')"
-          >
-            Реєстрація
-          </button>
+        <nav class="tab-row">
+          <button class="tab-btn active" data-tab="login">Вхід</button>
+          <button class="tab-btn" data-tab="register">Реєстрація</button>
         </nav>
 
-        <div
-          id="auth-error"
-          class="auth-error"
-          role="alert"
-          aria-live="polite"
-        ></div>
+        <div id="auth-error"></div>
 
-        <form
-          id="login-form"
-          onsubmit="
-            event.preventDefault();
-            handleLogin();
-          "
-        >
-          <div class="form-group">
-            <label for="login-email">Email</label>
-            <input
-              type="email"
-              id="login-email"
-              placeholder="your@email.com"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="login-password">Пароль</label>
-            <input
-              type="password"
-              id="login-password"
-              placeholder="••••••••"
-              required
-              minlength="6"
-            />
-          </div>
-
-          <button type="submit" class="btn-primary">Увійти</button>
+        <form id="login-form">
+          <input type="email" id="login-email" required />
+          <input type="password" id="login-password" required />
+          <button class="btn-primary">Увійти</button>
         </form>
 
-        <form
-          id="register-form"
-          style="display: none"
-          onsubmit="
-            event.preventDefault();
-            handleRegister();
-          "
-        >
-          <div class="form-group">
-            <label for="reg-name">Ім'я</label>
-            <input
-              type="text"
-              id="reg-name"
-              placeholder="Ваше ім'я"
-              required
-              minlength="2"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="reg-email">Email</label>
-            <input
-              type="email"
-              id="reg-email"
-              placeholder="your@email.com"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="reg-phone">Телефон</label>
-            <input
-              type="tel"
-              id="reg-phone"
-              placeholder="+380XXXXXXXXX"
-              pattern="^\+380[0-9]{9}$"
-              required
-              title="Формат: +380 та 9 цифр"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="reg-role">Роль</label>
-            <select id="reg-role" required>
-              <option value="employee">Працівник</option>
-              <option value="admin">Менеджер</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="reg-password">Пароль</label>
-            <input
-              type="password"
-              id="reg-password"
-              placeholder="••••••••"
-              required
-              minlength="6"
-            />
-          </div>
-
-          <button type="submit" class="btn-primary">Зареєструватись</button>
+        <form id="register-form" style="display: none">
+          <input type="text" id="reg-name" required />
+          <input type="email" id="reg-email" required />
+          <input type="password" id="reg-password" required />
+          <button class="btn-primary">Зареєструватись</button>
         </form>
       </section>
     </main>
 
     <div id="app">
+      <button class="burger-btn" id="burger-btn">☰</button>
+
+      <div class="mobile-menu" id="mobile-menu">
+        <button id="close-menu">✖</button>
+        <button class="mobile-link" data-page="dashboard">Дашборд</button>
+      </div>
+
       <aside class="sidebar">
-        <header class="sidebar-logo">
-          <h2>Work<span>i</span>Fy</h2>
-          <p>Shift Manager</p>
-        </header>
-
-        <nav class="nav-section" aria-label="Головне меню">
-          <div class="nav-label" id="nav-label">Навігація</div>
-
-          <button
-            type="button"
-            class="nav-item active"
-            onclick="showPage('dashboard')"
-            aria-describedby="nav-label"
-          >
-            <span class="icon" aria-hidden="true">📊</span>
-            Дашборд
-          </button>
-
-          <button type="button" class="nav-item" onclick="showPage('schedule')">
-            <span class="icon" aria-hidden="true">📅</span>
-            Графік змін
-          </button>
-
-          <button
-            type="button"
-            class="nav-item"
-            onclick="showPage('my-shifts')"
-          >
-            <span class="icon" aria-hidden="true">👤</span>
-            Мої зміни
-          </button>
-
-          <button
-            type="button"
-            class="nav-item"
-            onclick="showPage('conflicts')"
-          >
-            <span class="icon" aria-hidden="true">⚠️</span>
-            Перевірка конфліктів
-          </button>
-
-          <button type="button" class="nav-item" onclick="showPage('requests')">
-            <span class="icon" aria-hidden="true">📝</span>
-            Заяви
-          </button>
-
-          <button
-            type="button"
-            class="nav-item"
-            onclick="showPage('add-shift')"
-          >
-            <span class="icon" aria-hidden="true">➕</span>
-            Додати зміну
-          </button>
-        </nav>
-
-        <footer class="sidebar-footer">
-          <div class="user-info">
-            <div class="user-avatar" id="sidebar-avatar">А</div>
-
-            <div>
-              <div class="user-name" id="sidebar-name">Анна</div>
-              <div class="user-role" id="sidebar-role">Працівник</div>
-            </div>
-          </div>
-
-          <button type="button" class="btn-logout" onclick="handleLogout()">
-            Вийти
-          </button>
-        </footer>
+        <button class="nav-item active" data-page="dashboard">Дашборд</button>
+        <button id="logout-btn">Вийти</button>
       </aside>
 
       <main class="main">
         <section class="page active" id="page-dashboard">
-          <header class="page-header">
-            <h2>Панель керування</h2>
-            <p>Огляд системи управління змінами WorkiFy</p>
-          </header>
-
-          <div class="stats-grid">
-            <article class="stat-card blue">
-              <h3 class="stat-label">Всього змін</h3>
-              <div class="stat-value" id="stat-total">4</div>
-            </article>
-
-            <article class="stat-card green">
-              <h3 class="stat-label">Активних заяв</h3>
-              <div class="stat-value" id="stat-requests">0</div>
-            </article>
-
-            <article class="stat-card warn">
-              <h3 class="stat-label">Конфліктів</h3>
-              <div class="stat-value" id="stat-conflicts">0</div>
-            </article>
-          </div>
-
-          <article class="card">
-            <h3 class="card-title">📋 Найближчі зміни (всі)</h3>
-            <div
-              class="shifts-list"
-              id="dashboard-shifts"
-              aria-live="polite"
-            ></div>
-          </article>
+          <h2>Панель керування</h2>
+          <button class="btn-primary">Зберегти</button>
         </section>
       </main>
     </div>
-
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="script.js"></script>
   </body>

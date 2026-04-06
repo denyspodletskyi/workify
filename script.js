@@ -237,3 +237,92 @@ function showToast(msg, type = "success") {
 }
 
 document.getElementById("check-date").valueAsDate = new Date("2026-02-17");
+
+// === TAB SWITCH ===
+document.querySelectorAll(".tab-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document
+      .querySelectorAll(".tab-btn")
+      .forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    loginForm.style.display = btn.dataset.tab === "login" ? "block" : "none";
+    registerForm.style.display =
+      btn.dataset.tab === "register" ? "block" : "none";
+  });
+});
+
+const loginForm = document.getElementById("login-form");
+const registerForm = document.getElementById("register-form");
+
+// === AUTH ===
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  document.getElementById("auth-screen").style.display = "none";
+  document.getElementById("app").style.display = "block";
+});
+
+registerForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  document.getElementById("auth-screen").style.display = "none";
+  document.getElementById("app").style.display = "block";
+});
+
+// === LOGOUT ===
+document.getElementById("logout-btn").addEventListener("click", () => {
+  document.getElementById("auth-screen").style.display = "flex";
+  document.getElementById("app").style.display = "none";
+});
+
+// === NAV ===
+document.querySelectorAll(".nav-item").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document
+      .querySelectorAll(".page")
+      .forEach((p) => p.classList.remove("active"));
+    document.getElementById("page-" + btn.dataset.page).classList.add("active");
+  });
+});
+
+// === BURGER ===
+const burger = document.getElementById("burger-btn");
+const menu = document.getElementById("mobile-menu");
+
+burger.addEventListener("click", () => {
+  menu.classList.add("open");
+  document.body.classList.add("no-scroll");
+});
+
+document.getElementById("close-menu").addEventListener("click", () => {
+  menu.classList.remove("open");
+  document.body.classList.remove("no-scroll");
+});
+
+document.querySelectorAll(".mobile-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    document
+      .querySelectorAll(".page")
+      .forEach((p) => p.classList.remove("active"));
+    document
+      .getElementById("page-" + link.dataset.page)
+      .classList.add("active");
+
+    menu.classList.remove("open");
+    document.body.classList.remove("no-scroll");
+  });
+});
+
+// === BUTTON UX ===
+document.querySelectorAll(".btn-primary").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.disabled = true;
+    const text = btn.textContent;
+
+    btn.textContent = "Обробка...";
+
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = text;
+    }, 1500);
+  });
+});

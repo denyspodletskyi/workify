@@ -312,7 +312,6 @@ body::before {
   min-height: 100vh;
 }
 
-/* GRID */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -321,14 +320,12 @@ body::before {
   margin-bottom: 28px;
 }
 
-/* FORM GRID */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
 }
 
-/* REQUEST GRID */
 .request-type-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -337,7 +334,6 @@ body::before {
   margin-bottom: 22px;
 }
 
-/* ANIMATIONS */
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -360,7 +356,6 @@ body::before {
   }
 }
 
-/* SCROLL */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -372,4 +367,57 @@ body::before {
 ::-webkit-scrollbar-thumb {
   background: var(--border);
   border-radius: 3px;
+}
+.btn-primary {
+  transition: all 0.3s ease;
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.burger-btn {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  z-index: 1001;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .burger-btn {
+    display: block;
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transform: translateY(-100%);
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+}
+
+.no-scroll {
+  overflow: hidden;
 }
