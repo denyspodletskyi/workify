@@ -238,7 +238,6 @@ function showToast(msg, type = "success") {
 
 document.getElementById("check-date").valueAsDate = new Date("2026-02-17");
 
-// === TAB SWITCH ===
 document.querySelectorAll(".tab-btn").forEach((btn) => {
   btn.addEventListener("click", () => {
     document
@@ -255,7 +254,6 @@ document.querySelectorAll(".tab-btn").forEach((btn) => {
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
 
-// === AUTH ===
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
   document.getElementById("auth-screen").style.display = "none";
@@ -268,13 +266,11 @@ registerForm.addEventListener("submit", (e) => {
   document.getElementById("app").style.display = "block";
 });
 
-// === LOGOUT ===
 document.getElementById("logout-btn").addEventListener("click", () => {
   document.getElementById("auth-screen").style.display = "flex";
   document.getElementById("app").style.display = "none";
 });
 
-// === NAV ===
 document.querySelectorAll(".nav-item").forEach((btn) => {
   btn.addEventListener("click", () => {
     document
@@ -284,7 +280,6 @@ document.querySelectorAll(".nav-item").forEach((btn) => {
   });
 });
 
-// === BURGER ===
 const burger = document.getElementById("burger-btn");
 const menu = document.getElementById("mobile-menu");
 
@@ -312,7 +307,6 @@ document.querySelectorAll(".mobile-link").forEach((link) => {
   });
 });
 
-// === BUTTON UX ===
 document.querySelectorAll(".btn-primary").forEach((btn) => {
   btn.addEventListener("click", () => {
     btn.disabled = true;
@@ -326,3 +320,51 @@ document.querySelectorAll(".btn-primary").forEach((btn) => {
     }, 1500);
   });
 });
+const container = document.querySelector("#items-grid");
+const loader = document.getElementById("loader");
+const errorBlock = document.getElementById("error");
+
+async function loadData() {
+  loader.style.display = "block";
+  errorBlock.textContent = "";
+
+  try {
+    const response = await fetch("data.json");
+
+    if (!response.ok) {
+      throw new Error("Помилка завантаження");
+    }
+
+    const data = await response.json();
+    renderCards(data);
+  } catch (error) {
+    container.innerHTML = "";
+    errorBlock.textContent =
+      "Вибачте, дані тимчасово недоступні. Спробуйте оновити сторінку.";
+  } finally {
+    loader.style.display = "none";
+  }
+}
+
+function renderCards(dataArray) {
+  container.innerHTML = "";
+
+  dataArray.forEach((item) => {
+    const cardHTML = `
+      <div class="card">
+        <img src="${item.image}" alt="${item.title}">
+        <h3>${item.title}</h3>
+        <p>${item.author}</p>
+        <p>${item.price} грн</p>
+        <button ${!item.inStock ? "disabled" : ""}>
+          ${item.inStock ? "Купити" : "Немає в наявності"}
+        </button>
+      </div>
+    `;
+
+    container.insertAdjacentHTML("beforeend", cardHTML);
+  });
+}
+
+// ---------- START ----------
+loadData();

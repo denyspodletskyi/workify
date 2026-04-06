@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Дюна",
+    "author": "Френк Герберт",
+    "price": 550,
+    "category": "Книги",
+    "image": "https://picsum.photos/200?1",
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "title": "Тигролови",
+    "author": "Іван Багряний",
+    "price": 320,
+    "category": "Книги",
+    "image": "https://picsum.photos/200?2",
+    "inStock": false
+  },
+  {
+    "id": 3,
+    "title": "MacBook",
+    "author": "Apple",
+    "price": 45000,
+    "category": "Техніка",
+    "image": "https://picsum.photos/200?3",
+    "inStock": true
+  },
+  {
+    "id": 4,
+    "title": "iPhone",
+    "author": "Apple",
+    "price": 30000,
+    "category": "Техніка",
+    "image": "https://picsum.photos/200?4",
+    "inStock": false
+  },
+  {
+    "id": 5,
+    "title": "Ноутбук ASUS",
+    "author": "ASUS",
+    "price": 28000,
+    "category": "Техніка",
+    "image": "https://picsum.photos/200?5",
+    "inStock": true
+  },
+  {
+    "id": 6,
+    "title": "Кобзар",
+    "author": "Тарас Шевченко",
+    "price": 200,
+    "category": "Книги",
+    "image": "https://picsum.photos/200?6",
+    "inStock": true
+  }
+]

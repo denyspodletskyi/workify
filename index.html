@@ -8,52 +8,16 @@
   </head>
 
   <body>
-    <main id="auth-screen">
-      <section class="auth-card">
-        <h1 class="auth-logo">Work<span>i</span>Fy</h1>
+    <h1>WorkiFy — Динамічні картки</h1>
 
-        <nav class="tab-row">
-          <button class="tab-btn active" data-tab="login">Вхід</button>
-          <button class="tab-btn" data-tab="register">Реєстрація</button>
-        </nav>
+    <!-- LOADER -->
+    <div id="loader" class="loader">Завантаження...</div>
 
-        <div id="auth-error"></div>
+    <!-- ERROR -->
+    <div id="error"></div>
 
-        <form id="login-form">
-          <input type="email" id="login-email" required />
-          <input type="password" id="login-password" required />
-          <button class="btn-primary">Увійти</button>
-        </form>
-
-        <form id="register-form" style="display: none">
-          <input type="text" id="reg-name" required />
-          <input type="email" id="reg-email" required />
-          <input type="password" id="reg-password" required />
-          <button class="btn-primary">Зареєструватись</button>
-        </form>
-      </section>
-    </main>
-
-    <div id="app">
-      <button class="burger-btn" id="burger-btn">☰</button>
-
-      <div class="mobile-menu" id="mobile-menu">
-        <button id="close-menu">✖</button>
-        <button class="mobile-link" data-page="dashboard">Дашборд</button>
-      </div>
-
-      <aside class="sidebar">
-        <button class="nav-item active" data-page="dashboard">Дашборд</button>
-        <button id="logout-btn">Вийти</button>
-      </aside>
-
-      <main class="main">
-        <section class="page active" id="page-dashboard">
-          <h2>Панель керування</h2>
-          <button class="btn-primary">Зберегти</button>
-        </section>
-      </main>
-    </div>
+    <!-- CONTAINER -->
+    <div id="items-grid" class="grid"></div>
 
     <script src="script.js"></script>
   </body>
